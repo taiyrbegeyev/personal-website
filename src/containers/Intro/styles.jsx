@@ -16,7 +16,7 @@ const RVH = styled(Div100vh)`
 `;
 
 const NameContainer = styled.div`
-  margin-bottom: 9vh;
+  margin-bottom: ${props => props.titleMargin}vh;
   color: white;
   text-align: center;
   font-family: 'Open Sans', sans-serif !important; 
