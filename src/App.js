@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Intro from 'containers/Intro/Intro'
 import "fullpage.js/vendors/scrolloverflow";
 import ReactFullpage from '@fullpage/react-fullpage';
 
@@ -13,11 +14,11 @@ const anchors = ["firstPage", "secondPage", "thirdPage"];
 
 const App = () => (
   <ReactFullpage
+    bigSectionsDestination={"top"}
     scrollOverflow={true}
-    scrollingSpeed={600}
+    scrollingSpeed={500}
     navigation
     navigationTooltips={anchors}
-    sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
     onLeave={(origin, destination, direction) => {
       console.log("onLeave event", { origin, destination, direction });
     }}
@@ -26,7 +27,9 @@ const App = () => (
 
       return (
         <div>
-          <div className="section" />
+          <div className="section" >
+            <Intro fullpageApi={fullpageApi}/>
+          </div>
           <div className="section" />
           <div className="section" />
         </div>
