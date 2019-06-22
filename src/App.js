@@ -1,8 +1,9 @@
-import React from 'react';
-import './App.css';
-import Intro from 'containers/Intro/Intro'
+import React, { useState } from 'react';
 import "fullpage.js/vendors/scrolloverflow";
 import ReactFullpage from '@fullpage/react-fullpage';
+import './App.css';
+import Intro from 'containers/Intro/Intro'
+import SocialMedia from 'components/SocialMedia/SocialMedia';
 
 const anchors = ["firstPage", "secondPage", "thirdPage"];
 
@@ -12,31 +13,37 @@ const anchors = ["firstPage", "secondPage", "thirdPage"];
   For example: <div class="section fp-noscroll">
 */
 
-const App = () => (
-  <ReactFullpage
-    bigSectionsDestination={"top"}
-    scrollOverflow={true}
-    scrollingSpeed={500}
-    navigation
-    navigationTooltips={anchors}
-    onLeave={(origin, destination, direction) => {
-      console.log("onLeave event", { origin, destination, direction });
-    }}
-    render={({ state, fullpageApi }) => {
-      console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
-
-      return (
-        <div>
-          <div className="section" >
-            <Intro fullpageApi={fullpageApi}/>
+const App = () => {
+  const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
+  
+  return (
+    <ReactFullpage
+      bigSectionsDestination={"top"}
+      scrollOverflow={true}
+      scrollingSpeed={500}
+      navigation
+      navigationTooltips={anchors}
+      onLeave={(origin, destination, direction) => {
+        console.log("onLeave event", { origin, destination, direction });
+      }}
+      render={({ state, fullpageApi }) => {
+        return (
+          <div>
+            <div className="section" >
+              <Intro fullpageApi={fullpageApi} windowWidth={windowWidth} setWindowWidth={setWindowWidth}/>
+            </div>
+            <div className="section">
+              <SocialMedia window={windowWidth} setWindowWidth={setWindowWidth}/>
+            </div>
+            <div className="section">
+              <SocialMedia window={windowWidth} setWindowWidth={setWindowWidth}/>
+            </div>
           </div>
-          <div className="section" />
-          <div className="section" />
-        </div>
-      );
+        );
+        }
       }
-    }
-  />
-);
+    />
+  );
+}
 
 export default App;
