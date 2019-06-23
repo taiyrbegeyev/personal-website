@@ -27,16 +27,11 @@ const SocialItem = styled.li`
     margin-bottom: 20px;
   }
   list-style: none;
-  margin: 10px 0;
+  margin: 15px 10px;
 `;
 
 const SocialLink = styled.a`
   outline: none;
-  padding: 10px;
-  &:hover,
-  &:focus {
-    transform: translateY(-3px);
-  }
   svg {
     width: 22px;
     height: 22px;
