@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "fullpage.js/vendors/scrolloverflow";
 import ReactFullpage from '@fullpage/react-fullpage';
 import './App.css';
-import Intro from 'containers/Intro/Intro'
-import SocialMedia from 'components/SocialMedia/SocialMedia';
+import Intro from 'containers/Intro/Intro';
+import AboutMe from 'containers/AboutMe/AboutMe';
 
 const anchors = ["firstPage", "secondPage", "thirdPage"];
 
@@ -13,10 +13,23 @@ const anchors = ["firstPage", "secondPage", "thirdPage"];
   For example: <div class="section fp-noscroll">
 */
 
-const App = () => {
+/*const useWindowWidth = () => {
   const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
-  
-  return (
+
+  const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowResize);
+      return () => window.removeEventListener('resize', handleWindowResize);
+  },[]);
+
+  return windowWidth;
+};*/
+
+class App extends React.Component {
+  render() { return (
     <ReactFullpage
       bigSectionsDestination={"top"}
       scrollOverflow={true}
@@ -28,22 +41,22 @@ const App = () => {
       }}
       render={({ state, fullpageApi }) => {
         return (
-          <div>
+          <ReactFullpage.Wrapper>
             <div className="section" >
-              <Intro fullpageApi={fullpageApi} windowWidth={windowWidth} setWindowWidth={setWindowWidth}/>
+              <Intro fullpageApi={fullpageApi}/>
             </div>
             <div className="section">
-              <SocialMedia window={windowWidth} setWindowWidth={setWindowWidth}/>
+              <AboutMe/>
             </div>
             <div className="section">
-              <SocialMedia window={windowWidth} setWindowWidth={setWindowWidth}/>
             </div>
-          </div>
+          </ReactFullpage.Wrapper>
         );
         }
       }
     />
   );
+  }
 }
 
 export default App;
