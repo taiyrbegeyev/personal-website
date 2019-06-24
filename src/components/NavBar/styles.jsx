@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'config/device';
 
 const Header = styled.header`
   position: absolute;
@@ -15,13 +16,22 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-size: 2rem;
 `;
 
 const Logo = styled.div`
   display: flex;
   align-items: center;
   color: #33333f;
+`;
+
+const LogoName = styled.p`
+  font-weight: "550";
+  display: none;
+
+  @media ${device.laptop} {
+    display: block;
+  }
 `;
 
 const NavBarItems = styled.div`
@@ -35,26 +45,38 @@ const Anchor = styled.a`
   text-decoration: none;
   color: #776f8f;
   cursor: pointer;
-  padding: 0 1.5em;
+  padding: 0 2rem;
 `;
 
 const DeveloperIcon = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
 `;
 
 const UnorderedList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
+  display: none;
+
+  @media ${device.tablet} {
+    display: flex;
+  }
 `;
 
 const ListItem = styled.li`
-  margin-right: 10px;
+`;
+
+const ToggleButtonItem = styled.div`
+  padding: 0 2rem;
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export { 
   Header, Nav, Logo, NavBarItems, Anchor,
-  DeveloperIcon, UnorderedList, ListItem 
+  DeveloperIcon, UnorderedList, ListItem,
+  ToggleButtonItem, LogoName
 };

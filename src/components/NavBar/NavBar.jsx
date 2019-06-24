@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Header, Nav, Logo, NavBarItems, Anchor,
-  DeveloperIcon, UnorderedList, ListItem 
+  DeveloperIcon, UnorderedList, ListItem,
+  ToggleButtonItem, LogoName
 } from './styles';
 import developer from 'assets/developer.png';
 import ToggleButton from 'components/ToggleButton/ToggleButton';
@@ -25,34 +26,26 @@ const NavBar = (props) => {
         <Anchor href="/">
           <DeveloperIcon src={developer} />
         </Anchor>
-        <p style={{fontWeight: "550"}}>Taiyr Begeyev</p>
+        <LogoName>Taiyr Begeyev</LogoName>
       </Logo>
       <NavBarItems>
-        <UnorderedList>
-          {
-            windowWidth > 900 && 
-            <React.Fragment>
-              <ListItem>
-                <Anchor href="/">Education</Anchor>
-              </ListItem>
-              <ListItem>
-                <Anchor href="/">Experience</Anchor>
-              </ListItem>
-              <ListItem>
-                <Anchor href="/">Projects</Anchor>
-              </ListItem>
-              <ListItem>
-                <Anchor href="/">Contact</Anchor>
-              </ListItem>
-            </React.Fragment>
-          }
-          { 
-            windowWidth <= 900 && 
-            <ListItem>
-              <ToggleButton />
-            </ListItem>
-          }
-        </UnorderedList>
+      <UnorderedList>
+        <ListItem>
+          <Anchor href="/">Education</Anchor>
+        </ListItem>
+        <ListItem>
+          <Anchor href="/">Experience</Anchor>
+        </ListItem>
+        <ListItem>
+          <Anchor href="/">Projects</Anchor>
+        </ListItem>
+        <ListItem>
+          <Anchor href="/">Contact</Anchor>
+        </ListItem>
+      </UnorderedList>         
+      <ToggleButtonItem>
+        <ToggleButton />
+      </ToggleButtonItem>
       </NavBarItems>
     </Nav>
   </Header>

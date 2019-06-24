@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect }  from 'react';
 import {BackgroundImage, RVH, NameContainer, Title, SubTitle, ScrollDown} from './styles';
 import desktopImage from 'assets/IMG_1758.jpg';
 import mobileImage from 'assets/IMG_1766.jpg';
 import Typist from 'react-typist';
 
 const Intro = (props) => {
-  const { windowWidth, setWindowWidth } = props;
+  const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
   const imageUrl = windowWidth >= 650 ? desktopImage : mobileImage;
   const titleMargin = windowWidth >= 650 ? 9 : 40; 
 
+
   const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
+      setWindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    }
-  });
+      window.addEventListener('resize', handleWindowResize);
+      return () => window.removeEventListener('resize', handleWindowResize);
+  },[]);
 
   return(
     <BackgroundImage imageUrl={imageUrl} >

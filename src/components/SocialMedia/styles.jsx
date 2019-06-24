@@ -1,11 +1,16 @@
 import styled from 'styled-components';
+import { device } from 'config/device';
 
 const SocialContainer = styled.div`
   width: 50px;
   position: absolute;
   bottom: 0;
-  left: 1vw;
+  left: 2rem;
   color: #a8b2d1;
+  display: none;
+  @media ${device.tablet} {
+    display: inline;
+  }
 `;
 
 const SocialItemList = styled.ul`

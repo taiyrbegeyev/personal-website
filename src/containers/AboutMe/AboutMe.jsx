@@ -8,12 +8,7 @@ const AboutMe = (props) => {
   return(
     <React.Fragment>
       <NavBar/>
-      {
-        windowWidth >= 766 &&
-        <div>
-          <SocialMedia />
-        </div>
-      } 
+      <SocialMedia />
     </React.Fragment>
   );
 }
