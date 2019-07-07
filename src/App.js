@@ -1,9 +1,12 @@
 import React from 'react';
-import "fullpage.js/vendors/scrolloverflow";
 import ReactFullpage from '@fullpage/react-fullpage';
 import './App.css';
 import Intro from 'containers/Intro/Intro';
 import AboutMe from 'containers/AboutMe/AboutMe';
+
+const pluginWrapper = () => {
+  require('fullpage.js/vendors/scrolloverflow'); // Optional. When using scrollOverflow:true
+};
 
 const anchors = ["firstPage", "secondPage", "thirdPage"];
 
@@ -29,33 +32,37 @@ const anchors = ["firstPage", "secondPage", "thirdPage"];
 };*/
 
 class App extends React.Component {
-  render() { return (
-    <ReactFullpage
-      bigSectionsDestination={"top"}
-      scrollOverflow={true}
-      scrollingSpeed={500}
-      navigation
-      navigationTooltips={anchors}
-      onLeave={(origin, destination, direction) => {
-        console.log("onLeave event", { origin, destination, direction });
-      }}
-      render={({ state, fullpageApi }) => {
-        return (
-          <ReactFullpage.Wrapper>
-            <div className="section" >
-              <Intro fullpageApi={fullpageApi}/>
-            </div>
-            <div className="section">
-              <AboutMe/>
-            </div>
-            <div className="section">
-            </div>
-          </ReactFullpage.Wrapper>
-        );
+  render() { 
+    return (
+      <ReactFullpage
+        bigSectionsDestination={"top"}
+        scrollOverflow={true}
+        scrollingSpeed={750}
+        pluginWrapper={pluginWrapper}
+        navigation
+        navigationTooltips={anchors}
+        onLeave={(origin, destination, direction) => {
+          console.log("onLeave event", { origin, destination, direction });
+        }}
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <div id="fullpage">
+                <div className="section">
+                  <Intro fullpageApi={fullpageApi}/>
+                </div>
+                <div className="section">
+                  <AboutMe/>
+                </div>
+                <div className="section">
+                </div>
+              </div>
+            </ReactFullpage.Wrapper>
+          );
+          }
         }
-      }
-    />
-  );
+      />
+    );
   }
 }
 
