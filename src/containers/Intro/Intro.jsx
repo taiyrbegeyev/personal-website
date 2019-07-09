@@ -20,7 +20,7 @@ const Intro = (props) => {
   },[]);
 
   return(
-    <BackgroundImage imageUrl={imageUrl} >
+    <BackgroundImage imageUrl={imageUrl} className="section">
       <RVH>
         <NameContainer titleMargin={titleMargin}>
           <Title>

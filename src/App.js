@@ -32,30 +32,34 @@ const anchors = ["firstPage", "secondPage", "thirdPage"];
 };*/
 
 class App extends React.Component {
+  componentWillMount () {
+    if( window.localStorage )
+          {
+            if( !localStorage.getItem('firstLoad') )
+            {
+              localStorage['firstLoad'] = true;
+              window.location.reload();
+            }  
+            else
+              localStorage.removeItem('firstLoad');
+    }}
+  
   render() { 
     return (
       <ReactFullpage
         bigSectionsDestination={"top"}
-        scrollOverflow={true}
         scrollingSpeed={750}
         pluginWrapper={pluginWrapper}
         navigation
         navigationTooltips={anchors}
-        onLeave={(origin, destination, direction) => {
-          console.log("onLeave event", { origin, destination, direction });
-        }}
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div id="fullpage">
-                <div className="section">
-                  <Intro fullpageApi={fullpageApi}/>
-                </div>
-                <div className="section">
-                  <AboutMe/>
-                </div>
-                <div className="section">
-                </div>
+              <Intro fullpageApi={fullpageApi}/>
+              <div className="section">
+                <AboutMe/>
+              </div>
+              <div className="section">
               </div>
             </ReactFullpage.Wrapper>
           );
