@@ -49,6 +49,7 @@ class App extends React.Component {
       <ReactFullpage
         bigSectionsDestination={"top"}
         scrollingSpeed={750}
+        scrollOverflow
         pluginWrapper={pluginWrapper}
         navigation
         navigationTooltips={anchors}
